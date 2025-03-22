@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- filename: bijoy_uni.xml -->
+<component>
+	<name>org.freedesktop.IBus.bijoy_JB</name>
+	<description>Bangla Bijoy Unicode Keyboard</description>
+	<exec>/usr/bin/python3 /usr/share/ibus/engine/bijoyJBengine.py</exec>
+	<author>Jubayer Hossain</author>
+	<engines>
+		<engine>
+			<name>bijoy:unicode</name>
+			<longname>Bijoy Unicode</longname>
+			<language>bn_BD</language>
+			<symbol>BN</symbol>
+			<icon>ibus-keyboard</icon>
+			<rank>99</rank>
+		</engine>
+		<engine>
+			<name>bijoy:classic</name>
+			<longname>Bijoy Classic</longname>
+			<language>bn_BD</language>
+			<symbol>bn</symbol>
+			<icon>ibus-keyboard</icon>
+			<rank>99</rank>
+		</engine>
+	</engines>
+</component>
