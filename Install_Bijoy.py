@@ -1,8 +1,8 @@
-script = """###DO NOT CHANGE ANYTHING UNLESS YOU KNOW WHAT YOU'RE DOING ###
+script = """
 ### APPLICATION DEVELOPED BY JUBAYER HOSSAIN ###
 ### Contact Me: jubayerhossain46644@gmail.com ###
 ### BIJOY FOR LINUX - TESTED IN FEDORA ###
-### VERSION - 1.0.0 ###
+### VERSION - 1.0.5 ###
 import gi
 gi.require_version('IBus', '1.0')
 from gi.repository import IBus
@@ -195,19 +195,19 @@ class ClassicEngine(IBus.EngineSimple):
             return False  # Let IBus handle the key normally  
         if not self.context:
             self.context = char
-        if self.context[-1]+char in self.rep[0]:
-            char = self.rep[0][self.context[-1]+char]
-            if not self.context == " ": self.send_backspace(1)                
-            else: char = char[-1]
-            self.context = char
         
-        elif len(self.context)>1 and self.context[-2:]+char in self.rep[1]:
+	if len(self.context)>1 and self.context[-2:]+char in self.rep[1]:
             char = self.rep[1][self.context[-2:]+char]
             self.send_backspace(2)
             self.context = char
         elif len(self.context)>2 and self.context+char in self.rep[2]:
             char = self.rep[2][self.context+char]
             self.send_backspace(3)
+            self.context = char
+        elif self.context[-1]+char in self.rep[0]:
+            char = self.rep[0][self.context[-1]+char]
+            if not self.context == " ": self.send_backspace(1)                
+            else: char = char[-1]
             self.context = char
         elif len(self.context)>2: self.context = self.context[1:]+char
         elif self.context[0] in self.rep_ki[1]+self.rep_ki[2]: # Storing context for 3 and 4 char pattern rep.
