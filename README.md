@@ -1,6 +1,9 @@
 # Bijoy For Linux
 It's a keyboard engine developed for working with IBus for linux. It includes both Unicode and Classic flavour of Bijoy bangla keyboard layout.
 ## Installation
+> [!IMPORTANT]
+> This is in development stage
+> For now, it is just tested in **Fedora**
 ### 1. Install Dependencies
 Install IBus and Python bindings for your Linux distribution:
 
@@ -32,7 +35,4 @@ sudo ibus restart
 ### 5. Add it from keyboard Settings
 You can find the keyboards from ibus preference > add keyboard  > under Bangla Section> Bijoy unicode or Bijoy classic
 
-> [!IMPORTANT]
-> This is in development stage
-> For now, it is just tested in **Fedora**
 
