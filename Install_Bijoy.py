@@ -271,14 +271,8 @@ def main():
     bus.request_name('org.freedesktop.IBus.bijoy_JB', 0)
     #factory.create_engine('bijoy')
     #engine = factory.create_engine('bijoy')
-    #if engine:
-    #    print('engine created')
-    #engine.process_key_event(IBus.KEY_j, 0, 0)
-    #else:
-    #    print('failed to create')
     IBus.main()
 
-mainloop = GLib.MainLoop()
 
 if __name__ == "__main__":
     main()
@@ -295,7 +289,7 @@ component = """<?xml version="1.0" encoding="UTF-8"?>
 			<name>bijoy:unicode</name>
 			<longname>Bijoy Unicode</longname>
 			<language>bn_BD</language>
-			<symbol>BN</symbol>
+			<symbol>ক</symbol>
 			<icon>ibus-keyboard</icon>
 			<rank>99</rank>
 		</engine>
