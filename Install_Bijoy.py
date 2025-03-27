@@ -151,6 +151,7 @@ class ClassicEngine(IBus.EngineSimple):
         self.connect('focus-in', lambda x: self.clean_context())
         #self.connect('set-cursor-location', self.clean_context)
         print('Engine initialized...')
+        self.context=""
         self.preedit=""
         self.map = {34: 'Ó', 38: 'u', 39: 'Õ', 45: '-', 55: '7', 65: '©', 66: 'Y', 67: '‰', 68: 'x', 69: 'X', 70: 'A', 71: '|', 72: 'f', 73: 'T', 74: 'L', 75: '_', 76: 'a', 77: 'k', 78: 'l', 79: 'N', 80: 'p', 81: 's', 82: 'd', 83: '~', 84: 'V', 85: 'S', 86: 'j', 87: 'q', 88: 'Š', 89: 'Q', 90: '¨', 92: 'r', 95: 'Ñ', 96: 'Ô', 97: '„', 98: 'b', 99: '‡', 100: 'w', 101: 'W', 102: 'v', 103: '&', 104: 'e', 105: 'n', 106: 'K', 107: 'Z', 108: '`', 109: 'g', 110: 'm', 111: 'M', 112: 'o', 113: 'O', 114: 'c', 115: 'y', 116: 'U', 117: 'R', 118: 'i', 119: 'h', 120: 'I', 121: 'P', 122: 'ª', 124: 't', 126: 'Ò'}
         self.rep =  [{'&v': 'Av', '&i': 'ª', '&w': 'B', '&x': 'C', '&y': 'D', '&~': 'E', '&„': 'F', '&‡': 'G', ' ‡': ' †', '&‰': 'H', ' ‰': ' ˆ', '&Š': 'J', 'Ky': 'Kz', 'K~': 'K‚', 'K„': 'K…', '°y': '°z', '°~': '°‚', '°„': '°…', '³ª': '³«', '±y': '±z', '±~': '±‚', '±„': '±…', 'Kª': 'µ', 'µy': 'µz', 'µ~': 'µ‚', 'µ„': 'µ…', 'ÿy': 'ÿz', 'ÿ~': 'ÿ‚‚', 'ÿ„': 'ÿ…', '³y': '³z', '³~': '³‚', '³„': '³…', 'My': '¸', '»y': '»z', '»~': '»‚', '»„': '»…', 'Mª': 'MÖ', 'Oy': 'Oz', 'O~': 'O‚', 'O„': 'O…', '¼y': '¼z', '¼~': '¼‚', '¼„': '¼…', '¼ª': '¼«', 'Py': 'Pz', 'P~': 'P‚', 'P„': 'P…', 'Qy': 'Qz', 'Q~': 'Q‚', 'Q„': 'Q…', 'Qª': 'Q«', 'Àz': 'Àz', 'À~': 'À‚', 'À„': 'À…', 'Áy': 'Áz', 'Á~': 'Á‚', 'Á„': 'Á…', 'Sy': 'Sz', 'S~': 'S‚', 'S„': 'S…', 'Ty': 'Tz', 'T~': 'T‚', 'T„': 'T…', 'Ây': 'Âz', 'Â‚': 'Â‚', 'Â…': 'Â…', 'Ãy': 'Ãz', 'Ã~': 'Ã‚', 'Ã„': 'Ã…', 'Uy': 'Uz', 'U~': 'U‚', 'U„': 'U…', 'Æy': 'Æz', 'Æ~': 'Æ‚', 'Æ„': 'Æ…', 'Vy': 'Vz', 'V~': 'V‚', 'V„': 'V…', 'Wy': 'Wz', 'W~': 'W‚', 'W„': 'W…', 'Çy': 'Çz', 'Ç~': 'Ç‚', 'Ç„': 'Ç…', 'Xy': 'Xz', 'X~': 'X‚', 'X„': 'X…', 'Èy': 'Èz', 'È~': 'È‚', 'È„': 'È…', 'Éy': 'Éz', 'É~': 'É‚', 'É„': 'É…', 'Ðy': 'Ðz', 'Ð~': 'Ð‚', 'Ð„': 'Ð…', 'Zy': 'Zz', 'Z~': 'Z‚', 'Z„': 'Z…', 'Ëy': 'Ëz', 'Ë~': 'Ë‚', 'Ë„': 'Ë…', 'Zª': 'Î', 'Îy': 'Îæ', 'Î~': 'Îƒ', '×y': '×z', '×~': '×‚', '×„': '×…', 'Ûy': 'Ûz', 'Û~': 'Û‚', 'Û„': 'Û…', 'Úy': 'Úz', 'Ú~': 'Ú‚', 'Ú„': 'Ú…', 'Üy': 'Üz', 'Ü~': 'Ü‚', 'Ü„': 'Ü…', 'Üª': 'Ü«', 'ßy': 'ßz', 'ß~': 'ß‚', 'ß„': 'ß…', 'Þy': 'Þz', 'Þ~': 'Þ‚', 'Þ„': 'Þ…', 'cª': 'cÖ', 'dy': 'dz', 'd~': 'd‚', 'd„': 'd…', 'dª': 'd«', '&.': 'ž', 'äy': 'äz', 'ä~': 'ä‚', 'ä„': 'ä…', 'fy': 'fz', 'f~': 'f‚', 'f„': 'f…', 'fª': 'å', 'åy': 'åæ', 'å~': 'åƒ', 'çy': 'çz', 'ç~': 'ç‚', 'ç„': 'ç…', 'gª': '¤ª', 'iy': 'iæ', 'i~': 'iƒ', 'éy': 'éz', 'é~': 'é‚', 'é„': 'é…', 'îy': 'îz', 'î~': 'î~', 'î„': 'î…', 'îª': 'î«', 'ky': 'ï', 'kª': 'kÖ', 'ðy': 'ðz', 'ð~': 'ð‚', 'ð„': 'ð…', 'ñy': 'ñz', 'ñ~': 'ñ‚', 'ñ„': 'ñ…', 'óy': 'óz', 'ó~': 'ó‚', 'ó„': 'ó…', 'ôy': 'ôz', 'ô~': 'ô‚', 'ô„': 'ô…', 'õy': 'õz', 'õ~': 'õ‚', 'õ„': 'õ…', 'òy': 'òz', 'ò~': 'ò‚', 'ò„': 'ò…', 'mª': '¯ª', 'ùy': 'ùz', 'ù~': 'ù‚', 'ù„': 'ù…', 'ùª': 'ù«', 'ny': 'û', 'n„': 'ü', 'þy': 'þz', 'þ~': 'þ~', 'þ„': 'þ„', 'nª': 'n«', 'oy': 'o–', '&|': '\\', '&e': '¦', '&j': 'ø', '&g': '¥', '&b': 'œ', '&Z': 'Í', '&;': 'Ê', '&Ô': '“', '÷y': '÷z', '÷~': '÷‚‚', '÷„': '÷…', 'ëy': 'ëz', 'ë~': 'ë‚‚', 'ë„': 'ë…'}, {'K&K': '°', 'K&U': '±', 'K&b': 'Kè', 'Kèy': 'Kèz', 'Kè~': 'Kè‚', 'Kè„': 'Kè…', 'K&e': 'K¡', 'K&g': '´', 'K&j': 'K¬', 'K¬y': 'K¬z', 'K¬~': 'K¬‚', 'K¬„': 'K¬…', 'ÿ&g': '²', 'K&l': 'ÿ', 'K&m': '·', 'K&Z': '³', 'ÿ&b': 'ÿè', 'ÿèy': 'ÿèz', 'ÿè~': 'ÿè‚', 'ÿè„': 'ÿè…', 'Lªy': 'Lªæ', 'Lª~': 'Lªƒ', 'O&M': '½', 'M&`': 'º', 'M&a': '»', 'M&b': 'Mœ', 'M&g': 'M¥', 'M&j': 'Mø', 'MÖy': 'MÖæ', 'MÖ~': 'MÖƒ', 'M&e': 'M¦', 'N&b': 'Nœ', 'Nªy': 'Nªæ', 'Nª~': 'Nªƒ', 'O&K': '¼', 'O&L': '•L', 'O&N': '•N', 'O&g': '•g', '¼«y': '¼«z', '¼«~': '¼«‚', '¼«„': '¼«…', '¼&l': '•ÿ', '•ÿy': '•ÿz', '•ÿ~': '•ÿ‚', '•ÿ„': '•ÿ…', 'P&P': '”P', '”Py': '”Pz', '”P~': '”P‚', '”P„': '”P…', 'P&Q': '”Q', '”Qy': '”Qz', '”Q~': '”Q‚', '”Q„': '”Q…', '”Qª': '”Q«', 'P&T': '”T', '”Ty': '”Tz', '”T~': '”T‚', '”T„': '”T…', 'R&R': '¾', 'R&S': 'À', 'R&T': 'Á', 'R&e': 'R¦', '¾&e': '¾¡', 'T&P': 'Â', 'T&Q': 'Ã', 'T&R': 'Ä', 'T&S': 'Å', 'U&U': 'Æ', 'U&e': 'U¡', 'U&g': 'U¥', 'W&W': 'Ç', 'Y&U': 'È', 'Y&V': 'É', 'Y&W': 'Ð', 'Y&b': 'Yœ', 'Y&e': 'Y¦', 'Z&Z': 'Ë', 'Z&_': 'Ì', 'Z&b': 'Zœ', 'Z&e': 'Z¡', 'Z&g': 'Z¥', 'Ë&e': 'Ë¡', '_&e': '_¡', '`&M': '˜M', '`&N': '˜N', '`&`': 'Ï', '`&a': '×', '`&f': '™¢', '™¢y': '™¢z', '™¢~': '™¢‚', '™¢„': '™¢…', '`&e': 'Ø', '`&g': 'Ù', '™¢ª': '™£', '™£y': '™£æ', '™£~': '™£ƒ', 'a&e': 'aŸ', '`ªy': '`ªæ', '`ª~': '`ªƒ', 'a&g': 'a¥', 'aªy': 'aªæ', 'aª~': 'aªƒ', 'b&U': '›U', '›Uy': '›Uz', '›U~': '›U‚', '›U„': '›U…', 'b&W': 'Û', 'b&V': 'Ú', 'b&Z': 'šÍ', 'šÍy': 'š‘', 'šÍ~': 'šÍ‚', 'šÍ„': 'šÍ…', 'b&_': 'š’', 'š’y': 'š’z', 'š’~': 'š’‚', 'š’„': 'š’…', 'b&`': '›`', 'b&a': 'Ü', 'b&b': 'bœ', 'b&e': 'š^', 'b&g': 'b¥', 'šÍª': 'š¿', 'Ü«y': 'Ü«z', 'Ü«~': 'Ü«‚', 'Ü«„': 'Ü«…', 'b&m': 'Ý', 'c&Z': 'ß', 'c&U': 'Þ', 'c&c': 'à', 'c&j': 'cø', 'c&b': 'cœ', 'cÖy': 'cÖæ', 'cÖ~': 'cÖƒ', 'd«y': 'd«z', 'd«~': 'd«‚', 'd«„': 'd«…', 'd&j': 'd¬', 'd¬y': 'd¬z', 'd¬~': 'd¬‚', 'd¬„': 'd¬„', 'e&R': 'â', 'e&j': 'eø', 'e&`': 'ã', 'e&a': 'ä', 'e&e': 'eŸ', 'eªy': 'eªæ', 'eª~': 'eªƒ', 'f&j': 'fø', 'g&b': '¤œ', 'g&j': '¤ø', 'g&c': '¤ú', 'g&d': 'ç', 'g&e': '¤^', 'g&f': '¤¢', '¤¢ª': '¤£', 'g&g': '¤§', 'j&K': 'é', 'j&W': 'ì', 'j&c': 'í', 'j&d': 'î', 'j&e': 'j¦', 'j&g': 'j¥', 'j&j': 'jø', 'kÖy': 'kÖæ', 'kÖ~': 'kÖƒ', 'k&P': 'ð', 'k&Q': 'ñ', 'k&b': 'kœ', 'k&e': 'k^', 'k&g': 'k¥', 'l&K': '®‹', '®‹y': '®‹z', '®‹~': '®‹‚', '®‹„': '®‹…', 'l&U': 'ó', 'l&V': 'ô', 'l&c': '®ú', '®úª': '®úÖ', 'l&d': 'õ', '®‹ª': '®Œ', '®Œy': '®Œz', '®Œ~': '®Œ‚', '®Œ„': '®Œ„', 'l&Y': 'ò', 'l&g': '®§', 'm&K': '¯‹', '¯‹y': '¯‹z', '¯‹~': '¯‹‚', '¯‹„': '¯‹…', 'm&L': 'ö', 'm&Z': '¯Í', '¯Íy': '¯‘', '¯Í~': '¯Í‚', '¯Í„': '¯Í…', 'm&_': '¯’', '¯’y': '¯’z', '¯’~': '¯’‚', '¯’„': '¯’…', 'm&j': '¯ø', 'm&c': '¯ú', 'm&e': '¯^', 'm&d': 'ù', 'ù«y': 'ù«z', 'ù«~': 'ù«‚', '¯Íª': '¯¿', 'm&b': '¯œ', 'm&g': '¯§', '¯‹ª': '¯Œ', '¯Œy': '¯Œz', '¯Œ~': '¯Œ‚', '¯Œ„': '¯Œ…', 'n&Y': 'nè', 'n&b': 'ý', 'n&e': 'nŸ', 'n&g': 'þ', 'n&j': 'n¬', 'm&U': '÷', 'j&U': 'ë', 'j&M': 'ê', 'c&m': 'á', 'M&M': '¹', 'n&e': 'n¡'}, {'”Q&e': '”Q¡', '˜M&y': '`&¸', '›`&e': '›Ø', '›`ªy': '›`ªæ', '›`ª~': '›`ªƒ', '¤ú&j': '¤úø', '(A)i': '(A)i', '®úªy': '®úÖæ', '®úª~': '®úÖƒ', '¯Í&e': '¯Í¡', '¯‹&j': '¯‹¬', '¯‹¬y': '¯‹¬z', '¯ú&j': '¯úø', 'šÍ&e': 'šÍ¡'}] 
@@ -164,17 +165,13 @@ class ClassicEngine(IBus.EngineSimple):
         # Update the preedit text in the application
         text = IBus.Text.new_from_string(preedit)
         self.update_preedit_text(text, len(preedit), True)
-    
-    def update_context(self, text):
-        self.send_text(self.preedit)
-        self.preedit = text
-        self.update_preedit(self.preedit)
-        
-    def send_text(self, text):
-        if text: self.commit_text(IBus.Text.new_from_string(text))
-        
+
+    def send_backspace(self, count):
+        # Simulate backspace presses (limited to IBus's capabilities)
+        for i in range(count):
+            self.delete_surrounding_text(-1, 1)
     def clean_context(self):
-        self.update_context("")
+        self.context = ""
     
     def process_key_event(self, obj, keyval, keycode, state):
                       
@@ -187,63 +184,34 @@ class ClassicEngine(IBus.EngineSimple):
         char = self.get_char(keyval) #Lookup Table
         
         if not char and keycode == 14: #If not a return from char then..
-            if self.preedit: 
-                self.preedit = self.preedit[:-1]
-                self.update_preedit(self.preedit)
-                return True
+            if self.context: self.context = self.context[:-1]
             return False
         elif not char and keyval ==32:
-          self.update_context(" ")
-          return True
+          self.context = " "
+          return False
         elif not char:
-            if not keycode in [42,54]:
-                self.clean_context()
-            return False  # Let IBus handle the key normally
-
+            return False  # Let IBus handle the key normally  
         
-        if len(self.preedit)>1 and self.preedit[-2:]+char in self.rep[1]:
-            self.send_text(self.preedit[:-2])
-            char = self.rep[1][self.preedit[-2:]+char]
-            if char[0] in self.rep_ki[1]:
-                self.preedit = char
-                self.update_preedit(self.preedit)
-                return True
-            self.preedit = ""
-            self.update_preedit("")
-        elif len(self.preedit)>2 and self.preedit+char in self.rep[2]:
-            char = self.rep[2][self.preedit+char]
-            self.update_preedit("")
-            self.preedit = ""
-        elif self.preedit and self.preedit[-1]+char in self.rep[0]:
-            
-            char = self.rep[0][self.preedit[-1]+char]
-            self.preedit = self.preedit[:-1]
-            self.update_context("")
-        elif len(self.preedit)>2:
-                self.send_text(self.preedit[0])
-                self.preedit = self.preedit[1:]+char
-                if not self.preedit[0] in self.rep_ki[2]:
-                    self.send_text(self.preedit[0])
-                    self.preedit = self.preedit[1:]
-                    if not self.preedit[0] in self.rep_ki[1]+self.rep_ki[2]:
-                        self.send_text(self.preedit[0])
-                        self.preedit = self.preedit[1:]
-                self.update_preedit(self.preedit)
-                return True
-        elif self.preedit and self.preedit[0] in self.rep_ki[1]+self.rep_ki[2]: # Storing context for 3 and 4 char pattern rep.Don't need to determine who's pattern will match.Trust me
-            self.preedit += char
-            self.update_preedit(self.preedit)
-            return True
-        elif char in self.rep_ki[0]+self.rep_ki[1]+self.rep_ki[2]: # Alternative
-            self.send_text(self.preedit)
-            self.preedit = char
-            self.update_preedit(self.preedit)
-            return True
-        else:
-            self.send_text(self.preedit)
-            self.update_preedit("")
-            self.preedit = "" 
-            
+	if not self.context: # Making Context
+            self.context = char        
+	elif len(self.context)>1 and self.context[-2:]+char in self.rep[1]:
+            char = self.rep[1][self.context[-2:]+char]
+            self.send_backspace(2)
+            self.context = char
+        elif len(self.context)>2 and self.context+char in self.rep[2]:
+            char = self.rep[2][self.context+char]
+            self.send_backspace(3)
+            self.context = char
+        elif self.context[-1]+char in self.rep[0]:
+            char = self.rep[0][self.context[-1]+char]
+            if not self.context == " ": self.send_backspace(1)                
+            else: char = char[-1]
+            self.context = char
+        elif len(self.context)>2: self.context = self.context[1:]+char
+        elif self.context[0] in self.rep_ki[1]+self.rep_ki[2]: # Storing context for 3 and 4 char pattern rep.
+            self.context += char
+        else: self.context = char
+	
         self.commit_text(IBus.Text.new_from_string(char))
         return True  # Key event handled
 
@@ -327,7 +295,7 @@ component = """<?xml version="1.0" encoding="UTF-8"?>
 			<name>bijoy:unicode</name>
 			<longname>Bijoy Unicode</longname>
 			<language>bn_BD</language>
-			<symbol>ক</symbol>
+			<symbol>BN</symbol>
 			<icon>ibus-keyboard</icon>
 			<rank>99</rank>
 		</engine>
