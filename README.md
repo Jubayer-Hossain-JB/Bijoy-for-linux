@@ -1,4 +1,4 @@
-# Bijoy Fot Linux
+# Bijoy For Linux
 It's a keyboard engine developed for working with IBus for linux. It includes both Unicode and Classic flavour of Bijoy bangla keyboard layout.
 ## Installation
 ### 1. Install Dependencies
