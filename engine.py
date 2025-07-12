@@ -4,7 +4,22 @@ from gi.repository import IBus
 from gi.repository import GLib
 from time import sleep
 
-    
+class PressBackspace:
+    def __init__(self, engine):
+        self.engine = engine
+    def exec(self, count):
+        for _ in range(count):
+            self.engine.forward_key_event(
+                IBus.keyval_from_name('BackSpace'),
+                14,
+                0
+            )
+            self.engine.forward_key_event(
+                IBus.keyval_from_name('BackSpace'),
+                14,
+                IBus.ModifierType.RELEASE_MASK
+            )
+
 class UnicodeEngine(IBus.EngineSimple):
     def __init__(self, bus, object_path):
         self.name = "bijoy:unicode"
@@ -19,6 +34,7 @@ class UnicodeEngine(IBus.EngineSimple):
         #self.active_surrounding_text =True
         self.connect('process-key-event', self.process_key_event)
         self.connect('focus-in', lambda x: self.clean_context())
+        self.pressback = PressBackspace(self)
         #self.connect('set-cursor-location', self.clean_context)
         
         self.map = {33: '!', 34: '”', 35: '#', 36: '৳', 37: '%', 38: 'ঁ', 39: '’', 40: '(', 41: ')', 42: '*', 45: '-', 48: '০', 49: '১', 50: '২', 51: '৩', 52: '৪', 53: '৫', 54: '৬', 55: '৭', 56: '৮', 57: '৯', 64: '@', 65: 'র্', 66: 'ণ', 67: 'ৈ', 68: 'ী', 69: 'ঢ', 70: 'অ', 71: '।', 72: 'ভ', 73: 'ঞ', 74: 'খ', 75: 'থ', 76: 'ধ', 77: 'শ', 78: 'ষ', 79: 'ঘ', 80: 'ঢ়', 81: 'ং', 82: 'ফ', 83: 'ূ', 84: 'ঠ', 85: 'ঝ', 86: 'ল', 87: 'য়', 88: 'ৗ', 89: 'ছ', 90: '\u200d্য', 92: 'ৎ', 94: '\u09b3', 95: '_', 96: '‘', 97: 'ৃ', 98: 'ন', 99: 'ে', 100: 'ি', 101: 'ড', 102: 'া', 103: '্', 104: 'ব', 105: 'হ', 106: 'ক', 107: 'ত', 108: 'দ', 109: 'ম', 110: 'স', 111: 'গ', 112: 'ড়', 113: 'ঙ', 114: 'প', 115: 'ু', 116: 'ট', 117: 'জ', 118: 'র', 119: 'য', 120: 'ও', 121: 'চ', 122: '্র', 124: 'ঃ', 126: '“', 65456: '০', 65457: '১', 65458: '২', 65459: '৩', 65460: '৪', 65461: '৫', 65462: '৬', 65463: '৭', 65464: '৮', 65465: '৯'}
@@ -38,8 +54,7 @@ class UnicodeEngine(IBus.EngineSimple):
 
     def send_backspace(self, count):
         # Simulate backspace presses (limited to IBus's capabilities)
-        for i in range(count):
-            self.delete_surrounding_text(-1, 1)
+        self.pressback.exec(count)
     def clean_context(self):
         self.context = ""
     
@@ -146,6 +161,7 @@ class ClassicEngine(IBus.EngineSimple):
         self.connect('focus-in', lambda x: self.clean_context())
         #self.connect('set-cursor-location', self.clean_context)
         print('Engine initialized...')
+        self.pressback = PressBackspace(self)
         self.context=""
         self.preedit=""
         self.map = {34: 'Ó', 38: 'u', 39: 'Õ', 45: '-', 55: '7', 65: '©', 66: 'Y', 67: '‰', 68: 'x', 69: 'X', 70: 'A', 71: '|', 72: 'f', 73: 'T', 74: 'L', 75: '_', 76: 'a', 77: 'k', 78: 'l', 79: 'N', 80: 'p', 81: 's', 82: 'd', 83: '~', 84: 'V', 85: 'S', 86: 'j', 87: 'q', 88: 'Š', 89: 'Q', 90: '¨', 92: 'r', 95: 'Ñ', 96: 'Ô', 97: '„', 98: 'b', 99: '‡', 100: 'w', 101: 'W', 102: 'v', 103: '&', 104: 'e', 105: 'n', 106: 'K', 107: 'Z', 108: '`', 109: 'g', 110: 'm', 111: 'M', 112: 'o', 113: 'O', 114: 'c', 115: 'y', 116: 'U', 117: 'R', 118: 'i', 119: 'h', 120: 'I', 121: 'P', 122: 'ª', 124: 't', 126: 'Ò'}
@@ -162,8 +178,7 @@ class ClassicEngine(IBus.EngineSimple):
 
     def send_backspace(self, count):
         # Simulate backspace presses (limited to IBus's capabilities)
-        for i in range(count):
-            self.delete_surrounding_text(-1, 1)
+        self.pressback.exec(count)
     def clean_context(self):
         self.context = ""
     
@@ -189,8 +204,9 @@ class ClassicEngine(IBus.EngineSimple):
             self.context = char
         if self.context[-1]+char in self.rep[0]:
             char = self.rep[0][self.context[-1]+char]
-            if not self.context == " ": self.send_backspace(1)                
-            else: char = char[-1]
+            #if not self.context == " ": 
+            self.send_backspace(1)                
+            #else: char = char[-1]
             self.context = char
         
         elif len(self.context)>1 and self.context[-2:]+char in self.rep[1]:
